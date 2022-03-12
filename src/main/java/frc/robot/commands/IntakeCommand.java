@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -7,18 +7,25 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class DriveTest extends CommandBase {
+/**
+ * An example command that uses an example subsystem.
+ */
+public class IntakeCommand extends CommandBase {
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final IntakeSubsystem m_intake;
+
   /**
-   * Creates a new DriveTest.
+   * Creates a new ExampleCommand.
+   *
+   * @param subsystem The subsystem used by this command.
    */
-  DrivetrainSubsystem subsystem;
-  public DriveTest(DrivetrainSubsystem subsystem) {
+  public IntakeCommand(IntakeSubsystem intake) {
+    this.m_intake = intake;
     // Use addRequirements() here to declare subsystem dependencies.
-    this.subsystem = subsystem;
+    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
@@ -30,20 +37,12 @@ public class DriveTest extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(SmartDashboard.getBoolean("Drive Test On/Off", false)) {
-      if(SmartDashboard.getBoolean("Drive Test Left/Right", false)) {
-        subsystem.drive(-1,0.5,0,false);
-      } else {
-        subsystem.drive(-1,-0.5,0,false);
-      }
-    } else {
-      subsystem.drive(0,0,0,false);
-    }
+    m_intake.percentMotor(0.5);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(boolean interrupted){
     //end
   }
 

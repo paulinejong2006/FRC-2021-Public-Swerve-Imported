@@ -39,7 +39,7 @@ public class SwerveModule {
     
     double angleOffset = 0.0;
 
-    PIDController drivePIDController = new PIDController(0.12,0,0);
+    PIDController drivePIDController = new PIDController(0.34,0,0);
 
     ProfiledPIDController anglePIDController = new ProfiledPIDController(0.8, 0, 0,
       new TrapezoidProfile.Constraints(Constants.SWERVE_MAX_ANGULAR_VELOCITY, Constants.SWERVE_MAX_ANGULAR_ACCELERATION));
@@ -51,6 +51,7 @@ public class SwerveModule {
         driveMotor.restoreFactoryDefaults();
         angleMotor.restoreFactoryDefaults();
 
+        driveEncoder = driveMotor.getEncoder();
         angleEncoder = new AnalogInput(angleEncoderChannel);
       
         this.angleOffset = angleOffset;
@@ -71,8 +72,7 @@ public class SwerveModule {
       } else {
         return offset;
       }
-
-      //return offset;
+      // return offset;
     }
     
     public void setDesiredState(SwerveModuleState state) {
@@ -108,7 +108,7 @@ public class SwerveModule {
         //SmartDashboard.putNumber("Module Number: " + angleEncoder.getChannel(), Math.toDegrees((1.0 - angleEncoder.getVoltage() / RobotController.getVoltage5V()) * 2.0 * Math.PI));
         
         SmartDashboard.putNumber("Module Number " + angleEncoder.getChannel() + " set angle", state.angle.getDegrees());
-        
+        SmartDashboard.putNumber("Velocity: ", driveEncoder.getVelocity());
         
         driveMotor.set(driveOutput);
         angleMotor.set(angleOutput);

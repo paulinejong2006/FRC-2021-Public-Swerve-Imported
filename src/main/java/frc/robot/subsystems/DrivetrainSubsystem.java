@@ -19,10 +19,6 @@ import frc.model.NavX;
 import frc.model.SwerveModule;
 import frc.robot.Constants;
 
-import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.SPI;
 
 public class DrivetrainSubsystem extends SubsystemBase {
@@ -63,7 +59,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   
   public Rotation2d getAngle() {
     if (navX != null) {
-      //System.out.println(navX.getAngle());
+      System.out.println(navX.getAngle());
       return navX.getAngle();
     } else {
       System.out.println("navX is null");
@@ -91,11 +87,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public void dashboardAngleEncoders() {
-      SmartDashboard.putNumber("Front Left", frontLeftModule.getAdjustedAngleEncoder());
-      SmartDashboard.putNumber("Front Right", frontRightModule.getAdjustedAngleEncoder());
-      SmartDashboard.putNumber("Rear Left", rearLeftModule.getAdjustedAngleEncoder());
-      SmartDashboard.putNumber("Rear Right", rearRightModule.getAdjustedAngleEncoder());
+      SmartDashboard.putNumber("Front Left Angle Encoder", frontLeftModule.getAdjustedAngleEncoder());
+      SmartDashboard.putNumber("Front Right Angle Encoder", frontRightModule.getAdjustedAngleEncoder());
+      SmartDashboard.putNumber("Rear Left Angle Encoder", rearLeftModule.getAdjustedAngleEncoder());
+      SmartDashboard.putNumber("Rear Right Angle Encoder", rearRightModule.getAdjustedAngleEncoder());
     }
+
   public void updateOdometry() {
     odometry.update(
       getAngle(),

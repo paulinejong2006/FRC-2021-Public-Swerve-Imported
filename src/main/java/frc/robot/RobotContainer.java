@@ -8,9 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.simulation.PS4ControllerSim;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.*;
@@ -24,7 +22,8 @@ import edu.wpi.first.wpilibj.PS4Controller;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  final PS4Controller m_controller = new PS4Controller(0);
+  final PS4Controller m_controller = new PS4Controller(Constants.ControllerPort);
+  final XboxController m_xbox = new XboxController(Constants.ControllerPort2);
 
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -36,18 +35,26 @@ public class RobotContainer {
   public final DriveTest driveTest = new DriveTest(m_drivetrainSubsystem);
 
   public static ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
-  public final ClimbCommand climbCommand = new ClimbCommand(m_controller, m_elevatorSubsystem);
+  public final ClimbUpCommand upCommand = new ClimbUpCommand(m_xbox, m_elevatorSubsystem);
+  public final ClimbDownCommand downCommand = new ClimbDownCommand(m_xbox, m_elevatorSubsystem);
 
   public static ManipulatorSubsystem m_manipulatorSubsystem = new ManipulatorSubsystem();
-  public final BottomCommand bottomCommand = new BottomCommand(m_controller, m_manipulatorSubsystem);
-  public final TopCommand topCommand = new TopCommand(m_controller, m_manipulatorSubsystem);
+  public final BottomCommand bottomCommand = new BottomCommand(m_manipulatorSubsystem);
+  public final TopCommand topCommand = new TopCommand(m_manipulatorSubsystem);
 
+  public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  public final IntakeCommand intakeCommand = new IntakeCommand(m_intakeSubsystem);
+  public final StopIntakeCommand stopIntakeCommand = new StopIntakeCommand(m_intakeSubsystem);
+
+  public final StopCommand stopCommand = new StopCommand(m_elevatorSubsystem, m_manipulatorSubsystem);
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
       driveCommand.schedule();
-      climbCommand.schedule();
+      downCommand.schedule();
+      upCommand.schedule();
       // Configure the button bindings
       configureButtonBindings();
   }
@@ -59,14 +66,33 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+      //ps4 controller for the driver
       //zeroButton.whenPressed(zeroCommand);
       //driveCommand.schedule(false);
       new Button(m_controller::getCircleButton)
         .whenPressed(zeroCommand);
       new Button(m_controller::getCrossButton)
-        .whenPressed(bottomCommand);
+        .whenPressed(intakeCommand); 
       new Button(m_controller::getTriangleButton)
+        .whenPressed(stopIntakeCommand);
+      // new Button(m_controller::getCrossButton)
+      //   .whileHeld(bottomCommand);
+      // new Button(m_controller::getTriangleButton)
+      //   .whileHeld(topCommand);
+      // new Button(m_controller::getL2Button)
+      //   .whenActive(climbCommand);
+      // new Button(m_controller::getR2Button)
+      //   .whenActive(climbCommand);
+      // new Button(m_controller::getSquareButton)
+      //   .whenActive(stopIntakeCommand);  
+      
+      //xbox controlller for the operator
+      new Button(m_xbox::getXButton)
+        .whenPressed(bottomCommand);
+      new Button(m_xbox::getBButton)
         .whenPressed(topCommand);
+      new Button(m_xbox::getAButton)
+        .whenPressed(stopCommand);
   }
 
 

@@ -9,9 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import edu.wpi.first.wpilibj.PS4Controller.*;
 
 public class DriveCommand extends CommandBase {
   /**
@@ -30,16 +28,17 @@ public class DriveCommand extends CommandBase {
 // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //init
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double left1 = -m_controller.getLeftX();
-    double left0 = -m_controller.getLeftY();
+    double left0 = -m_controller.getLeftX();
+    double left1 = m_controller.getLeftY();
     double right0 = m_controller.getRightX();
 
-    //reduces sensitivity so that the wind doesnt blow it over
+    //reduces sensitivity so that the                                                                                            x wind doesnt blow it over
     if(Math.abs(left1) < 0.05){
       left1 = 0;
     }
@@ -50,12 +49,12 @@ public class DriveCommand extends CommandBase {
       right0 = 0;
     }
 
-    drivetrainSubsystem.drive(left1, left0, right0, true);
-  }
+    drivetrainSubsystem.drive(left0 * 3, left1 *3, -right0, false);  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //end
   }
 
   // Returns true when the command should end.

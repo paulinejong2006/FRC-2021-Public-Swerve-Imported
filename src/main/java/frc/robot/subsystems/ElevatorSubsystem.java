@@ -16,11 +16,11 @@ public class ElevatorSubsystem extends SubsystemBase{
     rightMotor = new WPI_TalonSRX(Constants.ElevatorRightMotor);
   } 
 
-  public static void percentMotor(double input){
+  public void percentMotor(double input){
     leftMotor.set(ControlMode.PercentOutput, input);
     rightMotor.set(ControlMode.PercentOutput, -input);
   }
-    
+  
   @Override
   public void periodic() {
   // This method will be called once per scheduler run

@@ -8,16 +8,19 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
 
+import java.lang.ModuleLayer.Controller;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS4Controller;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -31,6 +34,9 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   private PS4Controller ps4;
+  private ElevatorSubsystem elevator;
+  private IntakeSubsystem intake;
+  private ManipulatorSubsystem manipulator;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -44,6 +50,9 @@ public class Robot extends TimedRobot {
     // roller = new Boomerangs();
     // tower = new Tower();
     // shooter = new Shooter();
+    elevator = new ElevatorSubsystem();
+    intake = new IntakeSubsystem();
+    manipulator = new ManipulatorSubsystem();
     ps4 = new PS4Controller(Constants.ControllerPort);
     SmartDashboard.putBoolean("Drive Test On/Off", false);
     SmartDashboard.putBoolean("Drive Test Left/Right", false);
@@ -65,7 +74,6 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     RobotContainer.m_drivetrainSubsystem.dashboardAngleEncoders();
-
 
 
   }
@@ -112,8 +120,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_robotContainer.driveCommand.schedule(false);
-
+    m_robotContainer.driveCommand.schedule(true);
+    m_robotContainer.upCommand.schedule(true);
+    m_robotContainer.downCommand.schedule(true);
     //m_robotContainer.driveTest.schedule(false);
   }
 

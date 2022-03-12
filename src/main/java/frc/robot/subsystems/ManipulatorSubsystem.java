@@ -15,15 +15,17 @@ public class ManipulatorSubsystem extends SubsystemBase{
         endMotor = new WPI_VictorSPX(Constants.ManipulatorEndMotor);
       } 
     
-      public static void percentMotor(double input){
+      public void midMotor(double input){
         midMotor.set(ControlMode.PercentOutput, input);
-        endMotor.set(ControlMode.PercentOutput, -input);
+      } 
+      public void endMotor(double input){
+        endMotor.set(ControlMode.PercentOutput, input);
       }
-        
-        
+       
       @Override
       public void periodic() {
       // This method will be called once per scheduler run
+      
       }
       
 }
