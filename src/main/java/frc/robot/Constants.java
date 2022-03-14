@@ -21,7 +21,9 @@ public final class Constants {
     public static final double TRACKWIDTH = 29.5;
     public static final double WHEELBASE = 29.5;
 
-    public static final double SWERVE_MAX_VELOCITY = 80.0;
+    // https://www.swervedrivespecialties.com/products/mk3-swerve-module
+    // NEO Swerve max speed is 12.1ft/s, converted to about 3.6m/s
+    public static final double SWERVE_MAX_VELOCITY = 3.6; 
     public static final double SWERVE_MAX_ANGULAR_VELOCITY = 6*Math.PI;
     public static final double SWERVE_MAX_ANGULAR_ACCELERATION =  16*Math.PI;
 

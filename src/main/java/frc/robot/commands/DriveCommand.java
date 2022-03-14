@@ -49,7 +49,8 @@ public class DriveCommand extends CommandBase {
       right0 = 0;
     }
 
-    drivetrainSubsystem.drive(left0 * 3, left1 *3, -right0, false);  }
+    // Squaring controller inputs for finer control at low speeds
+    drivetrainSubsystem.drive(left0*left0, left1*left1, -right0, false);  }
 
   // Called once the command ends or is interrupted.
   @Override
