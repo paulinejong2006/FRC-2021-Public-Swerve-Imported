@@ -30,8 +30,8 @@ public class TopCommand extends CommandBase {
     @Override
     public void execute() {
         //empties the balls
-        m_manipulatorSubsystem.midMotor(0.2);
-        m_manipulatorSubsystem.endMotor(0.2);
+        m_manipulatorSubsystem.midMotor(0.8);
+        m_manipulatorSubsystem.endMotor(0.8);
     }
 
     // Called once the command ends or is interrupted.

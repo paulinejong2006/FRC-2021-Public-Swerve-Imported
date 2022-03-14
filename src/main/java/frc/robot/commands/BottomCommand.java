@@ -15,7 +15,7 @@ public class BottomCommand extends CommandBase {
     public BottomCommand(ManipulatorSubsystem manipulatorSubsystem) {
       this.m_manipulatorSubsystem = manipulatorSubsystem;
       // Use addRequirements() here to declare subsystem dependencies.
-      addRequirements(manipulatorSubsystem);
+      addRequirements(m_manipulatorSubsystem);
     }
   
     // Called when the command is initially scheduled.
@@ -28,8 +28,8 @@ public class BottomCommand extends CommandBase {
     @Override
     public void execute() {
         //receives the balls
-        m_manipulatorSubsystem.midMotor(0.2);
-        m_manipulatorSubsystem.endMotor(-0.2);
+        m_manipulatorSubsystem.midMotor(0.8);
+        m_manipulatorSubsystem.endMotor(-0.8);
         
     }
   

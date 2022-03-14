@@ -1,0 +1,57 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "Talon SRX[11]/Analog In": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[12]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[12]/Analog In": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[12]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/DrivetrainSubsystem": "Subsystem",
+      "/LiveWindow/ElevatorSubsystem": "Subsystem",
+      "/LiveWindow/ExampleSubsystem": "Subsystem",
+      "/LiveWindow/IntakeSubsystem": "Subsystem",
+      "/LiveWindow/ManipulatorSubsystem": "Subsystem",
+      "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[2]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[3]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[4]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[5]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[6]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[7]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[8]": "PIDController",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/Ungrouped/Talon SRX [11]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon SRX [12]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Victor SPX [14]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Victor SPX [41]": "Motor Controller",
+      "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro"
+    },
+    "windows": {
+      "/LiveWindow/DrivetrainSubsystem": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  }
+}

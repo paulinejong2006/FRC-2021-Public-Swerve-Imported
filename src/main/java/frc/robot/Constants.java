@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.util.Units;
+
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -51,7 +51,7 @@ public final class Constants {
     public static final double DRIVETRAIN_REAR_RIGHT_ANGLE_OFFSET = Math.toRadians(270); //was -282 //reversed motor polarity btw
 
     public static int IntakeMotor = 16;
-    public static int ElevatorLeftMotor = 12;
+    public static int ElevatorLeftMotor = 9;
     public static int ElevatorRightMotor = 11;
     public static int ManipulatorEndMotor = 41;
     public static int ManipulatorMidMotor = 14;

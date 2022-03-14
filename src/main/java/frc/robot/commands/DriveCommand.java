@@ -15,12 +15,12 @@ public class DriveCommand extends CommandBase {
   /**
    * Creates a new DriveCommand.
    */
-  DrivetrainSubsystem drivetrainSubsystem;
+  DrivetrainSubsystem m_drivetrainSubsystem;
   PS4Controller m_controller;
   public DriveCommand(PS4Controller controller, DrivetrainSubsystem drivetrainSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.drivetrainSubsystem = drivetrainSubsystem;
-    addRequirements(drivetrainSubsystem);
+    this.m_drivetrainSubsystem = drivetrainSubsystem;
+    addRequirements(m_drivetrainSubsystem);
     this.m_controller = controller;
   }
 
@@ -49,7 +49,7 @@ public class DriveCommand extends CommandBase {
       right0 = 0;
     }
 
-    drivetrainSubsystem.drive(left0 * 3, left1 *3, -right0, false);  }
+    m_drivetrainSubsystem.drive(left0 * 3, left1 *3, -right0, false);  }
 
   // Called once the command ends or is interrupted.
   @Override

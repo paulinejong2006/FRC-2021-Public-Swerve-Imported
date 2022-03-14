@@ -14,9 +14,9 @@ public class ClimbUpCommand extends CommandBase {
      *
      * @param subsystem The subsystem used by this command.
      */
-    public ClimbUpCommand(XboxController m_controller, ElevatorSubsystem elevatorSubsytem) {
+    public ClimbUpCommand(XboxController controller, ElevatorSubsystem elevatorSubsytem) {
         this.m_elevatorSubsystem = elevatorSubsytem;
-        this.m_controller = m_controller;
+        this.m_controller = controller;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_elevatorSubsystem);
     }

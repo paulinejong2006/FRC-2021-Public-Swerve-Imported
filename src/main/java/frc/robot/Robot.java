@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   private PS4Controller ps4;
+  private XboxController xbox;
   private ElevatorSubsystem elevator;
   private IntakeSubsystem intake;
   private ManipulatorSubsystem manipulator;
@@ -54,6 +55,8 @@ public class Robot extends TimedRobot {
     intake = new IntakeSubsystem();
     manipulator = new ManipulatorSubsystem();
     ps4 = new PS4Controller(Constants.ControllerPort);
+    xbox = new XboxController(Constants.ControllerPort2);
+
     SmartDashboard.putBoolean("Drive Test On/Off", false);
     SmartDashboard.putBoolean("Drive Test Left/Right", false);
   }
