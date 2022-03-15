@@ -44,12 +44,11 @@ public class RobotContainer {
   public static ManipulatorSubsystem m_manipulatorSubsystem = new ManipulatorSubsystem();
   public final BottomCommand bottomCommand = new BottomCommand(m_manipulatorSubsystem);
   public final TopCommand topCommand = new TopCommand(m_manipulatorSubsystem);
+  public final StopManipulatorCommand stopManipulatorCommand = new StopManipulatorCommand(m_manipulatorSubsystem);
 
   public static IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   public final IntakeCommand intakeCommand = new IntakeCommand(m_intakeSubsystem);
   public final StopIntakeCommand stopIntakeCommand = new StopIntakeCommand(m_intakeSubsystem);
-
-  public final StopCommand stopCommand = new StopCommand(m_elevatorSubsystem, m_manipulatorSubsystem);
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -74,10 +73,6 @@ public class RobotContainer {
       //driveCommand.schedule(false);
       new Button(m_controller::getCircleButton)
         .whenPressed(zeroCommand);
-      new Button(m_controller::getCrossButton)
-        .whenPressed(intakeCommand); 
-      new Button(m_controller::getTriangleButton)
-        .whenPressed(stopIntakeCommand);
       // new Button(m_controller::getCrossButton)
       //   .whileHeld(bottomCommand);
       // new Button(m_controller::getTriangleButton)
@@ -95,7 +90,11 @@ public class RobotContainer {
       new Button(m_xbox::getBButton)
         .whenPressed(topCommand);
       new Button(m_xbox::getAButton)
-        .whenPressed(stopCommand);
+        .whenPressed(stopManipulatorCommand);
+      new Button(m_xbox::getYButton)
+        .whenPressed(intakeCommand);
+      new Button(m_xbox::getYButton)
+        .whenReleased(stopIntakeCommand);
   }
 
 

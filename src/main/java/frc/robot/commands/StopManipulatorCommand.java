@@ -15,21 +15,21 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class StopCommand extends CommandBase {
+public class StopManipulatorCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ElevatorSubsystem m_elevatorSubsystem;
   private final ManipulatorSubsystem m_manipulatorSubsystem;
+
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public StopCommand(ElevatorSubsystem elevator, ManipulatorSubsystem manipulator) {
-    this.m_elevatorSubsystem = elevator;
+  public StopManipulatorCommand(ManipulatorSubsystem manipulator) {
     this.m_manipulatorSubsystem = manipulator;
+
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(elevator, manipulator);
+    addRequirements(manipulator);
   }
 
   // Called when the command is initially scheduled.
@@ -42,7 +42,6 @@ public class StopCommand extends CommandBase {
   @Override
   public void execute() {
     //execute
-    m_elevatorSubsystem.percentMotor(0.0);
     m_manipulatorSubsystem.endMotor(0);
     m_manipulatorSubsystem.midMotor(0);
   }
