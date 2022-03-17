@@ -16,6 +16,15 @@ import frc.robot.subsystems.*;
 
 import java.lang.ModuleLayer.Controller;
 
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.Constants;
@@ -38,6 +47,7 @@ public class Robot extends TimedRobot {
   private ElevatorSubsystem elevator;
   private IntakeSubsystem intake;
   private ManipulatorSubsystem manipulator;
+  Thread m_visionThread;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -51,14 +61,50 @@ public class Robot extends TimedRobot {
     // roller = new Boomerangs();
     // tower = new Tower();
     // shooter = new Shooter();
+    SmartDashboard.putString("", "Begin initializing");
     elevator = new ElevatorSubsystem();
     intake = new IntakeSubsystem();
     manipulator = new ManipulatorSubsystem();
     ps4 = new PS4Controller(Constants.ControllerPort);
     xbox = new XboxController(Constants.ControllerPort2);
-
+    SmartDashboard.putString("", "Initialized all");
     SmartDashboard.putBoolean("Drive Test On/Off", false);
     SmartDashboard.putBoolean("Drive Test Left/Right", false);
+
+    m_visionThread =
+        new Thread(
+            () -> {
+              // Get the UsbCamera from CameraServer
+              UsbCamera camera = CameraServer.startAutomaticCapture(Constants.CameraPort);
+              // Set the resolution, its in pixels
+              camera.setResolution(640, 480);
+
+              // Get a CvSink. This will capture Mats from the camera
+              CvSink cvSink = CameraServer.getVideo();
+              // Setup a CvSource. This will send images back to SmartDashboard
+              CvSource outputStream = CameraServer.putVideo("SmartDashboard", 640, 480);
+
+              Mat mat = new Mat();
+
+              // lets u turn the cam off when robor is off
+              while (!Thread.interrupted()) {
+                // Tell the CvSink to grab a frame from the camera and put it
+                // in the source mat.  If there is an error notify the output.
+                if (cvSink.grabFrame(mat) == 0) {
+                  // Send the output the error.
+                  outputStream.notifyError(cvSink.getError());
+                  // skip the rest of the current iteration
+                  continue;
+                }
+                // Put a rectangle on the image
+                Imgproc.rectangle(
+                    mat, new Point(100, 100), new Point(400, 400), new Scalar(255, 255, 255), 5);
+                // Give the output stream a new image to display
+                outputStream.putFrame(mat);
+              }
+            });
+    m_visionThread.setDaemon(true);
+    m_visionThread.start();
   }
 
   /**

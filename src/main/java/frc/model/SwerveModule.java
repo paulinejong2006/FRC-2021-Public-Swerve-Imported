@@ -38,8 +38,9 @@ public class SwerveModule {
 
     
     double angleOffset = 0.0;
-
-    PIDController drivePIDController = new PIDController(0.12,0,0);
+    
+    //dont need id bc its too advanced for u
+    PIDController drivePIDController = new PIDController(0.34,0,0);
 
     ProfiledPIDController anglePIDController = new ProfiledPIDController(0.8, 0, 0,
       new TrapezoidProfile.Constraints(Constants.SWERVE_MAX_ANGULAR_VELOCITY, Constants.SWERVE_MAX_ANGULAR_ACCELERATION));

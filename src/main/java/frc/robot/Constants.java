@@ -30,25 +30,25 @@ public final class Constants {
     public static final double DEFAULT_DRIVE_ROTATIONS_PER_UNIT = (5.0 / (4.0 * Math.PI)) * (60.0 / 15.0) * (18.0 / 26.0) * (42.0 / 14.0);
     public static final double RPM_TO_MPS = /*Units.inchesToMeters(4.0) * Math.PI / DRIVE_GEAR_RATIO / 60;*/ ((11.9/3.281)/(5676 / 60))/60;
     // switched view from back to front intake, left right oriented
-    public static final int DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR = 13;  //was 23
-    public static final int DRIVETRAIN_FRONT_LEFT_ANGLE_MOTOR = 10; //was 10
-    public static final int DRIVETRAIN_FRONT_LEFT_ANGLE_ENCODER = 2;  
-    public static final double DRIVETRAIN_FRONT_LEFT_ANGLE_OFFSET = Math.toRadians(-179); //was -39 //was -3
+    public static final int DRIVETRAIN_FRONT_LEFT_DRIVE_MOTOR = 10; 
+    public static final int DRIVETRAIN_FRONT_LEFT_ANGLE_MOTOR = 13; 
+    public static final int DRIVETRAIN_FRONT_LEFT_ANGLE_ENCODER = 3;  
+    public static final double DRIVETRAIN_FRONT_LEFT_ANGLE_OFFSET = Math.toRadians(0);
 
-    public static final int DRIVETRAIN_FRONT_RIGHT_DRIVE_MOTOR = 21;  //was 5
-    public static final int DRIVETRAIN_FRONT_RIGHT_ANGLE_MOTOR = 5; //was 12
-    public static final int DRIVETRAIN_FRONT_RIGHT_ANGLE_ENCODER = 3;
-    public static final double DRIVETRAIN_FRONT_RIGHT_ANGLE_OFFSET = Math.toRadians(-179); //was -333 //was -140
+    public static final int DRIVETRAIN_FRONT_RIGHT_DRIVE_MOTOR = 21;  
+    public static final int DRIVETRAIN_FRONT_RIGHT_ANGLE_MOTOR = 5; 
+    public static final int DRIVETRAIN_FRONT_RIGHT_ANGLE_ENCODER = 2;
+    public static final double DRIVETRAIN_FRONT_RIGHT_ANGLE_OFFSET = Math.toRadians(0); //was -333 //was -140
 
-    public static final int DRIVETRAIN_REAR_LEFT_DRIVE_MOTOR = 3; // was 3
-    public static final int DRIVETRAIN_REAR_LEFT_ANGLE_MOTOR = 15; // was 21
+    public static final int DRIVETRAIN_REAR_LEFT_DRIVE_MOTOR = 3; 
+    public static final int DRIVETRAIN_REAR_LEFT_ANGLE_MOTOR = 15; 
     public static final int DRIVETRAIN_REAR_LEFT_ANGLE_ENCODER = 1;
-    public static final double DRIVETRAIN_REAR_LEFT_ANGLE_OFFSET = Math.toRadians(224); //was 348 //134
+    public static final double DRIVETRAIN_REAR_LEFT_ANGLE_OFFSET = Math.toRadians(0); //was 348 //134
 
-    public static final int DRIVETRAIN_REAR_RIGHT_DRIVE_MOTOR = 7;  //was 22
-    public static final int DRIVETRAIN_REAR_RIGHT_ANGLE_MOTOR = 25;  //was 4
+    public static final int DRIVETRAIN_REAR_RIGHT_DRIVE_MOTOR = 25;  
+    public static final int DRIVETRAIN_REAR_RIGHT_ANGLE_MOTOR = 7; 
     public static final int DRIVETRAIN_REAR_RIGHT_ANGLE_ENCODER = 0;
-    public static final double DRIVETRAIN_REAR_RIGHT_ANGLE_OFFSET = Math.toRadians(270); //was -282 //reversed motor polarity btw
+    public static final double DRIVETRAIN_REAR_RIGHT_ANGLE_OFFSET = Math.toRadians(0); //was -282 //reversed motor polarity btw
 
     public static int IntakeMotor = 16;
     public static int ElevatorLeftMotor = 9;
@@ -58,6 +58,8 @@ public final class Constants {
 
     public static int ControllerPort = 0;
     public static final int ControllerPort2 = 1;
+    ///FIXME: port number
+    public static int CameraPort = 99;
 
 
 }

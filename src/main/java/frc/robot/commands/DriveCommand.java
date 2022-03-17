@@ -49,7 +49,7 @@ public class DriveCommand extends CommandBase {
       right0 = 0;
     }
 
-    m_drivetrainSubsystem.drive(left0 * 3, left1 *3, -right0, false);  }
+    m_drivetrainSubsystem.drive(left0 * 3, left1 *3, -right0, true);  }
 
   // Called once the command ends or is interrupted.
   @Override

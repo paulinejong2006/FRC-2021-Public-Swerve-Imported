@@ -42,6 +42,7 @@
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/Ungrouped/Talon SRX [11]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [12]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon SRX [9]": "Motor Controller",
       "/LiveWindow/Ungrouped/Victor SPX [14]": "Motor Controller",
       "/LiveWindow/Ungrouped/Victor SPX [41]": "Motor Controller",
       "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro"
