@@ -38,8 +38,7 @@ public class RobotContainer {
   public final DriveTest driveTest = new DriveTest(m_drivetrainSubsystem);
 
   public static ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
-  public final ClimbUpCommand upCommand = new ClimbUpCommand(m_xbox, m_elevatorSubsystem);
-  public final ClimbDownCommand downCommand = new ClimbDownCommand(m_xbox, m_elevatorSubsystem);
+  public final ClimbComand climbCommand = new ClimbComand(m_xbox, m_elevatorSubsystem);
 
   public static ManipulatorSubsystem m_manipulatorSubsystem = new ManipulatorSubsystem();
   public final BottomCommand bottomCommand = new BottomCommand(m_manipulatorSubsystem);
@@ -55,8 +54,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
       driveCommand.schedule();
-      downCommand.schedule();
-      upCommand.schedule();
+      climbCommand.schedule();
       // Configure the button bindings
       configureButtonBindings();
   }

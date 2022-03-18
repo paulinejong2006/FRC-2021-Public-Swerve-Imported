@@ -45,8 +45,8 @@ public final class Constants {
     public static final int DRIVETRAIN_REAR_LEFT_ANGLE_ENCODER = 1;
     public static final double DRIVETRAIN_REAR_LEFT_ANGLE_OFFSET = Math.toRadians(0); //was 348 //134
 
-    public static final int DRIVETRAIN_REAR_RIGHT_DRIVE_MOTOR = 25;  
-    public static final int DRIVETRAIN_REAR_RIGHT_ANGLE_MOTOR = 7; 
+    public static final int DRIVETRAIN_REAR_RIGHT_DRIVE_MOTOR = 7;  
+    public static final int DRIVETRAIN_REAR_RIGHT_ANGLE_MOTOR = 25; 
     public static final int DRIVETRAIN_REAR_RIGHT_ANGLE_ENCODER = 0;
     public static final double DRIVETRAIN_REAR_RIGHT_ANGLE_OFFSET = Math.toRadians(0); //was -282 //reversed motor polarity btw
 
@@ -58,8 +58,7 @@ public final class Constants {
 
     public static int ControllerPort = 0;
     public static final int ControllerPort2 = 1;
-    ///FIXME: port number
-    public static int CameraPort = 99;
+    public static int CameraPort = 99; //FixMe
 
 
 }

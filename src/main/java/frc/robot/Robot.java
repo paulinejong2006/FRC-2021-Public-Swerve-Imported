@@ -71,40 +71,41 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Drive Test On/Off", false);
     SmartDashboard.putBoolean("Drive Test Left/Right", false);
 
-    m_visionThread =
-        new Thread(
-            () -> {
-              // Get the UsbCamera from CameraServer
-              UsbCamera camera = CameraServer.startAutomaticCapture(Constants.CameraPort);
-              // Set the resolution, its in pixels
-              camera.setResolution(640, 480);
+    //camera stuff
+    // m_visionThread =
+    //     new Thread(
+    //         () -> {
+    //           // Get the UsbCamera from CameraServer
+    //           UsbCamera camera = CameraServer.startAutomaticCapture(Constants.CameraPort);
+    //           // Set the resolution, its in pixels
+    //           camera.setResolution(640, 480);
 
-              // Get a CvSink. This will capture Mats from the camera
-              CvSink cvSink = CameraServer.getVideo();
-              // Setup a CvSource. This will send images back to SmartDashboard
-              CvSource outputStream = CameraServer.putVideo("SmartDashboard", 640, 480);
+    //           // Get a CvSink. This will capture Mats from the camera
+    //           CvSink cvSink = CameraServer.getVideo();
+    //           // Setup a CvSource. This will send images back to SmartDashboard
+    //           CvSource outputStream = CameraServer.putVideo("SmartDashboard", 640, 480);
 
-              Mat mat = new Mat();
+    //           Mat mat = new Mat();
 
-              // lets u turn the cam off when robor is off
-              while (!Thread.interrupted()) {
-                // Tell the CvSink to grab a frame from the camera and put it
-                // in the source mat.  If there is an error notify the output.
-                if (cvSink.grabFrame(mat) == 0) {
-                  // Send the output the error.
-                  outputStream.notifyError(cvSink.getError());
-                  // skip the rest of the current iteration
-                  continue;
-                }
-                // Put a rectangle on the image
-                Imgproc.rectangle(
-                    mat, new Point(100, 100), new Point(400, 400), new Scalar(255, 255, 255), 5);
-                // Give the output stream a new image to display
-                outputStream.putFrame(mat);
-              }
-            });
-    m_visionThread.setDaemon(true);
-    m_visionThread.start();
+    //           // lets u turn the cam off when robor is off
+    //           while (!Thread.interrupted()) {
+    //             // Tell the CvSink to grab a frame from the camera and put it
+    //             // in the source mat.  If there is an error notify the output.
+    //             if (cvSink.grabFrame(mat) == 0) {
+    //               // Send the output the error.
+    //               outputStream.notifyError(cvSink.getError());
+    //               // skip the rest of the current iteration
+    //               continue;
+    //             }
+    //             // Put a rectangle on the image
+    //             Imgproc.rectangle(
+    //                 mat, new Point(100, 100), new Point(400, 400), new Scalar(255, 255, 255), 5);
+    //             // Give the output stream a new image to display
+    //             outputStream.putFrame(mat);
+    //           }
+    //         });
+    // m_visionThread.setDaemon(true);
+    // m_visionThread.start();
   }
 
   /**
@@ -170,8 +171,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     m_robotContainer.driveCommand.schedule(true);
-    m_robotContainer.upCommand.schedule(true);
-    m_robotContainer.downCommand.schedule(true);
+    m_robotContainer.climbCommand.schedule(true);
     //m_robotContainer.driveTest.schedule(false);
   }
 

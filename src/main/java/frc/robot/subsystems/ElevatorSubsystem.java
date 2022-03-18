@@ -14,6 +14,7 @@ public class ElevatorSubsystem extends SubsystemBase{
   public ElevatorSubsystem() {
     leftMotor = new WPI_TalonSRX(Constants.ElevatorLeftMotor);
     rightMotor = new WPI_TalonSRX(Constants.ElevatorRightMotor);
+    
   } 
 
   public void percentMotor(double input){

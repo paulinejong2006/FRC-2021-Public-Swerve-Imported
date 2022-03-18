@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSubsystem;
 
-public class ClimbUpCommand extends CommandBase {
+public class ClimbComand extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final ElevatorSubsystem m_elevatorSubsystem;
     private final XboxController m_controller;
@@ -14,7 +14,7 @@ public class ClimbUpCommand extends CommandBase {
      *
      * @param subsystem The subsystem used by this command.
      */
-    public ClimbUpCommand(XboxController controller, ElevatorSubsystem elevatorSubsytem) {
+    public ClimbComand(XboxController controller, ElevatorSubsystem elevatorSubsytem) {
         this.m_elevatorSubsystem = elevatorSubsytem;
         this.m_controller = controller;
         // Use addRequirements() here to declare subsystem dependencies.
@@ -24,7 +24,7 @@ public class ClimbUpCommand extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        //init
+        //omg init
     }
   
     // Called every time the scheduler runs while the command is scheduled.
@@ -32,12 +32,18 @@ public class ClimbUpCommand extends CommandBase {
     public void execute() {
         //this is to get the values of the L2 and R2 triggers for the climb
         double Ltrig = m_controller.getLeftTriggerAxis();
+        double Rtrig = m_controller.getRightTriggerAxis();
         if (Ltrig < 0.05){
             Ltrig = 0;
-        } else if (Ltrig > 0.5){
-            Ltrig = 0.5;
+        } else if (Ltrig > 0.8){
+            Ltrig = 0.8;
+        } if (Rtrig < 0.05){
+            Rtrig = 0;
+        } else if (Rtrig > 0.8){
+            Rtrig= 0.8;
         }
         m_elevatorSubsystem.percentMotor(Ltrig);
+        m_elevatorSubsystem.percentMotor(-Rtrig);
     }
   
     // Called once the command ends or is interrupted.
@@ -52,4 +58,3 @@ public class ClimbUpCommand extends CommandBase {
       return false;
     }
   }
-  
